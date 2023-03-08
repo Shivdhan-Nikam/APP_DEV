@@ -1,4 +1,5 @@
-import 'dart:js';
+// import 'dart:js';
+import 'package:js/js.dart';
 
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class heal extends StatelessWidget {
                             fontFamily: 'Raleway',
                             fontWeight: FontWeight.w700,
                             fontSize: 20,
-                            color: Colors.black),
+                            color: Color.fromARGB(255, 5, 5, 5)),
                       ))
                 ],
               ),
@@ -126,6 +127,7 @@ class heal extends StatelessWidget {
               ]),
               calculation(),
               // getListView(),
+              calculateFertilizer()
             ],
           ),
         ));
@@ -157,7 +159,7 @@ class calculation extends StatelessWidget {
                     fontFamily: 'Raleway', color: Colors.white, fontSize: 20),
               ),
               onPressed: () {
-                ClaculateFertilizer(context);
+                // ClaculateFertilizer(context);
               },
             ),
           ),
@@ -183,6 +185,48 @@ class calculation extends StatelessWidget {
     int p = 20;
     int k = 30;
     return "NPK : ${(n + p + k) / 3}kg";
+  }
+}
+
+class calculateFertilizer extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // // TODO: implement createState
+    // throw UnimplementedError();
+    return fertilizerCalculation();
+  }
+}
+
+class fertilizerCalculation extends State<calculateFertilizer> {
+  String plant = "";
+  @override
+  Widget build(BuildContext context) {
+    // // TODO: implement build
+    // throw UnimplementedError();
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Container(
+            height: 40,
+            width: 256,
+            child: TextField(
+              onSubmitted: (String str) {
+                setState(() {
+                  plant = str;
+                });
+              },
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              "your plant name is $plant",
+              style: TextStyle(fontFamily: 'Raleway', fontSize: 20),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
